@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/materialize.css" media="screen,projection" />
+
+    <!--<script type="text/javascript" src="../../src/materializeInitialization.js"></script>-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('select');
+            let options = []
+            var instances = M.FormSelect.init(elems, options);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.chips');
+            let options = []
+            var instances = M.Chips.init(elems, options);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.chips');
+            options = {
+                tag: 'chip content'
+            }
+            var instances = M.Chips.init(elems, options);
+        });
+
+
+    </script>
+
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Recipe</title>
+
+</head>
+
+<body>
+    {{>header}}
+
+    <!--Form for adding recipe -->
+    <div class="container">
+        <h4 align="center">Add Recipe Form</h4>
+        <div class="row">
+            <form class="col s12" action="/addNewRecipe" method="POST">
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="recipeTitle" type="text" class="validate" name="title">
+                        <label for="recipeTitle">Recipe Title</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <textarea id="textarea1" class="materialize-textarea" name="description"></textarea>
+                        <label for="textarea1">Recipe Description</label>
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="recipeUrl" type="url" class="validate" name="recipeLink">
+                <label for="recipeUrl">Recipe URL</label>
+            </div>
+            <div class="input-field col s6">
+                <select id="recipeSelectField">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">Breakfast</option>
+                    <option value="2">Lunch</option>
+                    <option value="3">Dinner</option>
+                    <option value="4">Appetiser</option>
+                    <option value="5">Snack</option>
+                </select>
+                <label>Type</label>
+            </div>
+            <!--Hidden field to store value of select box -->
+            <div class="input-field col s0" style="display: none">
+                <input id="recipeTypeStore" type="text" class="validate" name="recipeType">
+                <label for="recipeTypeStore">Testing Option</label>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="input-field col s12">
+                <p>Tags</p>
+                <div class="chips chips-initial" name="recipeTags" id="tagContainer">
+
+                </div>
+            </div>
+            <!--Hidden field to store value of tags box -->
+            <div class="input-field col s0" style="display: none">
+                <input id="tagsStore" type="text" class="validate" name="recipeTags">
+                <label for="tagsStore>Testing Option</label>
+            </div>
+        </div>
+
+
+
+        <div class=" row">
+                    <div class="input-field col s6">
+                        <input id="Ingredient" type="text" class="validate">
+                        <label for="Ingredient">Ingredient</label>
+                        <a class="waves-effect waves-light btn-small" id="addIngredientBtn">Add Ingredient</a>
+                    </div>
+                    <div class="input-field col s6">
+                        <select multiple name="recipeSpices" id="seasoningSelect">
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="1">Basil</option>
+                            <option value="2">Bay Leaves</option>
+                            <option value="3">Black Pepper</option>
+                            <option value="4">Cardamom Pods</option>
+                            <option value="5">Cayenne Pepper</option>
+                            <option value="6">Chilli Flakes</option>
+                            <option value="7">Cinnamon</option>
+                            <option value="8">Coriander</option>
+                            <option value="9">Cumin</option>
+                            <option value="10">Curry Powder</option>
+                            <option value="11">Fennel</option>
+                            <option value="12">Garam Masala</option>
+                            <option value="13">Ginger</option>
+                            <option value="14">Marjoram</option>
+                            <option value="15">Oregano</option>
+                            <option value="16">Paprika</option>
+                            <option value="17">Parsley</option>
+                            <option value="18">Rosemary</option>
+                            <option value="19">Tarragon</option>
+                            <option value="20">Thyme</option>
+                            <option value="21">Turmeric</option>
+
+                        </select>
+                        <label>Seasoning</label>
+                    </div>
+
+                    <!--Hidden field to store value of select box -->
+                    <div class="input-field col s0" style="display: none">
+                        <input id="seasoningStore" type="text" class="validate" name="recipeSeasoning">
+                        <label for="seasoningStore">Testing Option</label>
+                    </div>
+            </div>
+
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea class="materialize-textarea" id="ingredientList" style="height: 300px;"
+                        name="recipeIngredients"></textarea>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="Method" type="text" class="validate">
+                    <label for="Method">Method</label>
+                    <a class="waves-effect waves-light btn-small" id="addMethodStepBtn">Add Recipe Step</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea class="materialize-textarea" id="MethodStepList" style="height: 150px;"
+                        name="recipeMethod"></textarea>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <button class="btn waves-effect waves-light" type="submit">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+    {{>footer}}
+    <!--JavaScript at end of body for optimized loading-->
+
+    <script type="text/javascript" src="/js/materialize.js"></script>
+    <script type="text/javascript" src="/js/eventListeners.js"></script>
+
+</body>
+
+</html>
