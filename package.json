@@ -11,6 +11,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "hbs": "^4.1.1",
-    "materialize-css": "^1.0.0-rc.2"
+    "materialize-css": "^1.0.0-rc.2",
+    "mongoose": "^5.10.15",
+    "validator": "^13.1.17"
   }
 }

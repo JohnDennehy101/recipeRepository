@@ -21,6 +21,8 @@ let tagsStore = document.getElementById("tagsStore");
 
 let chipEls;
 
+let replaceDeletedTag = "";
+
 addIngredientButton.addEventListener("click", (e) => {
   /*let rowDiv = e.path[3];
   let newRowEl = document.createElement("div");
@@ -52,7 +54,7 @@ addIngredientButton.addEventListener("click", (e) => {
   //rowDiv.appendChild(newRowEl);
 });
 
-addMethodStepBtn.addEventListener("key", () => {
+addMethodStepBtn.addEventListener("click", () => {
   methodStepList.textContent += count + ". " + addMethodStepField.value + "\n";
   count++;
   addMethodStepField.value = "";
@@ -73,8 +75,8 @@ tagContainer.addEventListener("keyup", (e) => {
       formatText = 0;
     }
     chipEls = document.getElementsByClassName("chip");
-    console.log(chipEls);
-    console.log(chipEls.childNodes);
+    //console.log(chipEls);
+    //console.log(chipEls.childNodes);
 
     if (chipEls !== undefined) {
       for (let i = 0; i < chipEls.length; i++) {
@@ -85,20 +87,67 @@ tagContainer.addEventListener("keyup", (e) => {
             0,
             formatDeletionText
           );
-          console.log(tagsStore.value.indexOf(finalTagTextDeletion[0]));
+          //console.log(tagsStore.value.indexOf(finalTagTextDeletion[0]));
           let beforeDeletion = tagsStore.value.slice(
             0,
             tagsStore.value.indexOf(finalTagTextDeletion[0])
           );
-          console.log(finalTagTextDeletion[finalTagTextDeletion.length - 1]);
+
+          console.log(tagsStore.value.indexOf(finalTagTextDeletion));
+          //let replace = `${finalTagTextDeletion}`;
+          //let replace = ",";
+          //let re = new RegExp(replace, "g");
+          //let test1000 = `${tagsStore.value}`.replace(re, "");
+          //console.log("Test 1000: " + test1000);
+          //replaceDeletedTag = tagsStore.value.replace(
+          //  `${finalTagTextDeletion}`,
+          //  "testings"
+          // );
+          console.log("before deletion: " + beforeDeletion);
+          /*console.log("testing replace: " + replaceDeletedTag);
+          
+          console.log(finalTagTextDeletion + "To be deleted");
+          console.log("first char: " + finalTagTextDeletion.charAt(0)); */
+          /*let afterDeletion = tagsStore.value.substring(
+            tagsStore.value.indexOf(
+              finalTagTextDeletion.charAt(finalTagTextDeletion.length - 1)
+            )
+          );*/
+          console.log(
+            "Index position " +
+              (tagsStore.value.indexOf(
+                beforeDeletion.charAt(beforeDeletion.length - 1)
+              ) +
+                finalTagTextDeletion.length +
+                1)
+          );
+          console.log(
+            "First char to go from: " +
+              tagsStore.value.indexOf(
+                beforeDeletion.charAt(beforeDeletion.length - 1)
+              )
+          );
           let afterDeletion = tagsStore.value.slice(
             tagsStore.value.indexOf(
-              finalTagTextDeletion[finalTagTextDeletion.length - 1]
-            ),
-            tagsStore.value.length
+              beforeDeletion.charAt(beforeDeletion.length - 1)
+            ) + finalTagTextDeletion.length
           );
+
+          console.log("After deletion " + afterDeletion);
+          tagsStore.value = "";
+          let test = false;
+          while (!test) {
+            tagsStore.value = beforeDeletion + afterDeletion;
+            beforeDeletion = "";
+            afterDeletion = "";
+            unformattedDeletion = "";
+            console.log("Value after change: " + tagsStore.value);
+            test = true;
+            break;
+          }
+
           console.log(finalTagTextDeletion);
-          //console.log(tagsStore.value);
+          console.log(tagsStore.value);
           console.log(beforeDeletion);
           console.log(afterDeletion);
         });

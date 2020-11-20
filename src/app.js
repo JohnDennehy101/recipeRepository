@@ -1,6 +1,8 @@
 const path = require("path");
 const express = require("express");
 const hbs = require("hbs");
+const mongoose = require("mongoose");
+const validator = require("validator");
 
 const app = express();
 const publicDirectoryPath = path.join(__dirname, "../public");
@@ -14,10 +16,42 @@ app.use(express.json());
 app.use(express.urlencoded());
 hbs.registerPartials(partialsPath);
 
+mongoose.connect("mongodb://127.0.0.1:27017/recipes_collection", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const Recipe = mongoose.model("Recipe", {
+  title: {
+    type: String,
+    trim: true,
+  },
+  description: {
+    type: String,
+    trim: true,
+  },
+  link: { type: String, trim: true },
+  type: { type: String },
+  tags: { type: String },
+  seasoning: { type: String },
+  ingredients: { type: String },
+  method: { type: String },
+});
+
 app.get("", (req, res) => {
-  res.render("index", {
+  let allRecipes = Recipe.find()
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((error) => {
+      res.status(400).json({
+        error: error,
+      });
+    });
+  /*res.render("index", {
     imagePath: "/imgs/pexels-karolina-grabowska-4199098.jpg",
-  });
+    allRecipes,
+  }); */
 });
 
 app.get("/addRecipe", (req, res) => {
@@ -25,6 +59,25 @@ app.get("/addRecipe", (req, res) => {
 });
 
 app.post("/addNewRecipe", (req, res) => {
+  let recipe = new Recipe({
+    title: req.body.title,
+    description: req.body.description,
+    link: req.body.recipeLink,
+    type: req.body.recipeType,
+    tags: req.body.recipeTags,
+    seasoning: req.body.recipeSeasoning,
+    ingredients: req.body.recipeIngredients,
+    method: req.body.recipeMethod,
+  });
+
+  recipe
+    .save()
+    .then(() => {
+      console.log(recipe);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   console.log(req.body);
   console.log(req.body.recipeSeasoning);
   console.log(req.body.recipeType);
