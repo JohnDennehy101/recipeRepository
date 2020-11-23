@@ -30,28 +30,37 @@ const Recipe = mongoose.model("Recipe", {
     type: String,
     trim: true,
   },
+  imagePath: {
+    type: String,
+  },
   link: { type: String, trim: true },
   type: { type: String },
   tags: { type: String },
+  numberOfServings: {
+    type: Number,
+  },
   seasoning: { type: String },
   ingredients: { type: String },
   method: { type: String },
 });
 
+function obtainImagePath() {
+  return "/imgs/pexels-karolina-grabowska-4199098.jpg";
+}
+
 app.get("", (req, res) => {
-  let allRecipes = Recipe.find()
-    .then((result) => {
-      res.status(200).json(result);
+  Recipe.find()
+    .then((recipes) => {
+      //res.status(200).json(result);
+      res.render("index", {
+        recipes,
+      });
     })
     .catch((error) => {
       res.status(400).json({
         error: error,
       });
     });
-  /*res.render("index", {
-    imagePath: "/imgs/pexels-karolina-grabowska-4199098.jpg",
-    allRecipes,
-  }); */
 });
 
 app.get("/addRecipe", (req, res) => {
@@ -62,9 +71,11 @@ app.post("/addNewRecipe", (req, res) => {
   let recipe = new Recipe({
     title: req.body.title,
     description: req.body.description,
+    imagePath: req.body.imagePath,
     link: req.body.recipeLink,
     type: req.body.recipeType,
     tags: req.body.recipeTags,
+    numberOfServings: req.body.numberOfServings,
     seasoning: req.body.recipeSeasoning,
     ingredients: req.body.recipeIngredients,
     method: req.body.recipeMethod,

@@ -97,16 +97,46 @@
                 <input id="tagsStore" type="text" class="validate" name="recipeTags">
                 <label for="tagsStore">Testing Option</label>
             </div>
+
+            <!--Hidden field to store value of image path -->
+            <div class="input-field col s0" style="display: none">
+                <input id="imageUrl" type="text" class="validate" name="imagePath">
+                <label for="imageUrl">Testing Option</label>
+            </div>
         </div>
 
 
 
-        <div class=" row">
-            <div class="input-field col s6">
+        <div class="row">
+            <!-- <div class="input-field col s6">
                 <input id="Ingredient" type="text" class="validate">
                 <label for="Ingredient">Ingredient</label>
                 <a class="waves-effect waves-light btn-small" id="addIngredientBtn">Add Ingredient</a>
+            </div>-->
+
+            <div class="input-field col s6">
+                <select id="numOfServingsField">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <label>Number of Servings</label>
             </div>
+
+            <!--Hidden field to store value of serving select box -->
+            <div class="input-field col s0" style="display: none">
+                <input id="servingValueStore" type="number" class="validate" name="numberOfServings">
+                <label for="servingValueStore">Testing Option</label>
+            </div>
+
             <div class="input-field col s6">
                 <select multiple name="recipeSpices" id="seasoningSelect">
                     <option value="" disabled selected>Choose your option</option>
@@ -146,24 +176,24 @@
 
         <div class="row">
             <div class="input-field col s12">
-                <textarea class="materialize-textarea" id="ingredientList" style="height: 300px;"
-                    name="recipeIngredients"></textarea>
+                <textarea class="materialize-textarea" id="ingredientList" name="recipeIngredients"
+                    placeholder="List the Recipe Ingredients here..."></textarea>
 
             </div>
         </div>
 
-        <div class="row">
+        <!--<div class="row">
             <div class="input-field col s12">
                 <input id="Method" type="text" class="validate">
                 <label for="Method">Method</label>
                 <a class="waves-effect waves-light btn-small" id="addMethodStepBtn">Add Recipe Step</a>
             </div>
-        </div>
+        </div>-->
 
         <div class="row">
             <div class="input-field col s12">
-                <textarea class="materialize-textarea" id="MethodStepList" style="height: 150px;"
-                    name="recipeMethod"></textarea>
+                <textarea class="materialize-textarea" id="MethodStepList" name="recipeMethod"
+                    placeholder="List the Recipe Instructions here..."></textarea>
 
             </div>
         </div>

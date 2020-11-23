@@ -11,6 +11,10 @@ let tagContainer = document.getElementById("tagContainer");
 
 let recipeTypeSelectField = document.getElementById("recipeSelectField");
 
+let numOfServingsField = document.getElementById("numOfServingsField");
+
+let servingValueStore = document.getElementById("servingValueStore");
+
 let recipeTypeStore = document.getElementById("recipeTypeStore");
 
 let seasoningStore = document.getElementById("seasoningStore");
@@ -23,8 +27,16 @@ let chipEls;
 
 let replaceDeletedTag = "";
 
-addIngredientButton.addEventListener("click", (e) => {
-  /*let rowDiv = e.path[3];
+let imageUrl = document.getElementById("imageUrl");
+
+let imagePathCollection = [];
+
+for (let i = 1; i < 16; i++) {
+  imagePathCollection.push(`/imgs/img${i}.jpg`);
+}
+
+/*addIngredientButton.addEventListener("click", (e) => {
+  let rowDiv = e.path[3];
   let newRowEl = document.createElement("div");
   newRowEl.classList.add("row");
   let inputFieldDivWrapper = document.createElement("div");
@@ -46,21 +58,20 @@ addIngredientButton.addEventListener("click", (e) => {
 
    console.log(addIngredientInputField.value); */
 
-  ingredientList.textContent +=
+/*ingredientList.textContent +=
     "\u2022 " + addIngredientInputField.value + "\n";
-  //M.textareaAutoResize("ingredientList");
-  addIngredientInputField.value = "";
+  M.textareaAutoResize("ingredientList");
+  addIngredientInputField.value = "";*/
 
-  //rowDiv.appendChild(newRowEl);
-});
+//rowDiv.appendChild(newRowEl);
+//});
 
-addMethodStepBtn.addEventListener("click", () => {
+/*addMethodStepBtn.addEventListener("click", () => {
   methodStepList.textContent += count + ". " + addMethodStepField.value + "\n";
   count++;
   addMethodStepField.value = "";
-  //M.textareaAutoResize("ingredientList");
   addIngredientInputField.value = "";
-});
+});*/
 
 tagContainer.addEventListener("keyup", (e) => {
   tagsStore.value = "";
@@ -163,6 +174,11 @@ recipeTypeSelectField.addEventListener("change", (e) => {
   //recipeTypeSelectField.textContent = options[e.target.value];
 });
 
+numOfServingsField.addEventListener("change", (e) => {
+  console.log(e.target.value);
+  servingValueStore.value = e.target.value;
+});
+
 seasoningSelectField.addEventListener("change", (e) => {
   let options = e.target.selectedOptions;
   seasoningStore.value = "";
@@ -173,4 +189,15 @@ seasoningSelectField.addEventListener("change", (e) => {
       seasoningStore.value += options[i].textContent + ",";
     }
   }
+});
+
+function obtainRandomImagePath() {
+  let imagePaths = [...imagePathCollection];
+  let randomIndexPosition = Math.floor(Math.random() * imagePaths.length);
+  return imagePaths[randomIndexPosition];
+}
+
+// this way it works
+document.addEventListener("DOMContentLoaded", function () {
+  imageUrl.value = obtainRandomImagePath();
 });
