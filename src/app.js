@@ -67,6 +67,10 @@ app.get("/addRecipe", (req, res) => {
   res.render("addRecipe");
 });
 
+app.get("/viewRecipe/:id", (req, res) => {
+  res.send("Great work");
+});
+
 app.post("/addNewRecipe", (req, res) => {
   let recipe = new Recipe({
     title: req.body.title,
