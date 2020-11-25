@@ -68,7 +68,18 @@ app.get("/addRecipe", (req, res) => {
 });
 
 app.get("/viewRecipe/:id", (req, res) => {
-  res.send("Great work");
+  Recipe.findById(req.params.id)
+    .then((recipe) => {
+      //res.status(200).json(result);
+      res.render("viewRecipe", {
+        recipe,
+      });
+    })
+    .catch((error) => {
+      res.status(400).json({
+        error: error,
+      });
+    });
 });
 
 app.post("/addNewRecipe", (req, res) => {

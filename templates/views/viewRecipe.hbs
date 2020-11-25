@@ -14,6 +14,108 @@
 <body>
     {{>header}}
 
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12">
+                <div class="card large" style="height: 1500px; background-color: #FDFFFC">
+                    <div class="card-image">
+                        <img src="{{recipe.imagePath}}" style="height: 300px">
+                    </div>
+                    <div class="card-content" style="padding: 24px 24px 5px 24px !important">
+                        <h4 class="left-align">{{recipe.title}}</h4>
+                    </div>
+                    <div class="card-content" style="padding: 5px 24px !important">
+                        <h5 class="left-align" style="display:inline-block;">
+                            <i class="medium material-icons"
+                                style="vertical-align: bottom !important; font-size: 30px !important; margin: 0px 5px;">local_dining</i>{{recipe.type}}
+                        </h5>
+
+
+                    </div>
+                    <div class="card-content" style="padding: 5px 24px !important">
+                        <h5 class="valign-wrapper" style="display:inline-block;">
+                            <i class="medium material-icons"
+                                style="vertical-align: bottom !important; font-size: 30px !important; margin: 0px 5px;">group</i>{{recipe.numberOfServings}}
+                            Servings
+                        </h5>
+                    </div>
+                    <div class="card-content left-align" style="padding: 15px 24px !important">
+
+                        <a class="waves-effect waves-light btn" style="margin: 0px 7px">Italian</a>
+                        <a class="waves-effect waves-light btn" style="margin: 0px 7px">Comfort</a>
+                    </div>
+                    <div class="card-content" style="padding: 10px 24px !important">
+                        <span class="card-title left-align" style="font-weight: 500">Description</span>
+                        <p class="left-align" style="font-size: 18px">{{recipe.description}}</p>
+                    </div>
+                    <div class="card-content" style="padding: 10px 24px !important">
+                        <span class="card-title left-align" style="font-weight: 500">Seasoning</span>
+                    </div>
+
+                    <ul class="collection">
+                        <li class="collection-item avatar"
+                            style="min-height: 60px !important; display: flex; align-items: center">
+                            <i class="material-icons circle teal lighten-2"
+                                style="vertical-align: bottom !important; font-size: 30px">keyboard_arrow_right</i>
+                            <span class=" title left-align" style="font-size: 20px">Black Pepper</span>
+
+
+                        </li>
+                        <li class="collection-item avatar"
+                            style="min-height: 60px !important; display: flex; align-items: center">
+                            <i class="material-icons circle teal lighten-2"
+                                style="vertical-align: bottom !important; font-size: 30px">keyboard_arrow_right</i>
+                            <span class=" title left-align" style="font-size: 20px">Cardamom Pods</span>
+
+
+                        </li>
+                        <li class="collection-item avatar"
+                            style="min-height: 60px !important; display: flex; align-items: center">
+                            <i class="material-icons circle teal lighten-2"
+                                style="vertical-align: bottom !important; font-size: 30px">keyboard_arrow_right</i>
+                            <span class=" title left-align" style="font-size: 20px">Basil</span>
+
+
+                        </li>
+
+                    </ul>
+
+
+
+
+                    <div class="card-content">
+                        <span class="card-title left-align" style="font-weight: 500">Ingredients</span>
+
+                        <p class="left-align" style="font-size: 18px">{{recipe.ingredients}}</p>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title left-align" style="font-weight: 500">Method</span>
+
+                        <p class="left-align" style="font-size: 18px">{{recipe.method}}</p>
+                    </div>
+
+
+
+                    <div class="card-content center-align">
+                        <a class="waves-effect wave-light btn-large" style="margin: 0px 10px">Edit Recipe</a>
+                        <a class="waves-effect red btn-large" style="margin: 0px 10px">Delete Recipe</a>
+
+                    </div>
+
+
+
+                    <div class="card-action center-align" style="background-color: #1976d2 ">
+                        <a href="{{recipe.link}}" target="_blank" style="color: #FFFFFF">View Original Recipe</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
     {{>footer}}
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="/js/materialize.js"></script>
