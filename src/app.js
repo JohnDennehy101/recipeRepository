@@ -16,6 +16,17 @@ app.use(express.json());
 app.use(express.urlencoded());
 hbs.registerPartials(partialsPath);
 
+/*hbs.registerHelper("formatTags", function (tags) {
+  let tagsArr = tags.split(",");
+  for (let i = 0; i < tagsArr.length; i++) {
+    let tagBtn = document.createElement("a");
+    tagBtn.classList.add("waves-effect");
+    tagBtn.classList.add("waves-light btn");
+    tagBtn.style["margin"] = "margin: 0px 7px";
+    tagBtn.textContent = tagsArr[i];
+  }
+});*/
+
 mongoose.connect("mongodb://127.0.0.1:27017/recipes_collection", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -43,10 +54,6 @@ const Recipe = mongoose.model("Recipe", {
   ingredients: { type: String },
   method: { type: String },
 });
-
-function obtainImagePath() {
-  return "/imgs/pexels-karolina-grabowska-4199098.jpg";
-}
 
 app.get("", (req, res) => {
   Recipe.find()
