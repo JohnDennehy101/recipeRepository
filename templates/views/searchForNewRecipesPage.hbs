@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/materialize.css" media="screen,projection" />
+
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    {{>header}}
+    <div class="container">
+
+        <div class="row">
+
+            <div class="input-field col s8">
+                <select id="recipeCategorySelectField">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Beef">Beef</option>
+                    <option value="Chicken">Chicken</option>
+                    <option value="Dessert">Dessert</option>
+                    <option value="Lamb">Lamb</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
+                    <option value="Pasta">Pasta</option>
+                    <option value="Pork">Pork</option>
+                    <option value="Seafood">Seafood</option>
+                    <option value="Side">Side</option>
+                    <option value="Starter">Starter</option>
+                    <option value="Vegan">Vegan</option>
+                    <option value="Vegetarian">Vegetarian</option>
+
+                </select>
+                <label>Type</label>
+            </div>
+            <!--Hidden field to store value of select box -->
+            <div class="input-field col s0" style="display: none">
+                <input id="recipeCategoryStore" type="text" class="validate" name="recipeCategorySelected">
+                <label for="recipeCategoryStore">Testing Option</label>
+            </div>
+        </div>
+    </div>
+
+
+    {{>footer}}
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="/js/materialize.js"></script>
+</body>
+
+</html>

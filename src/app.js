@@ -55,7 +55,7 @@ const Recipe = mongoose.model("Recipe", {
   method: { type: String },
 });
 
-app.get("", (req, res) => {
+app.get("/", (req, res) => {
   Recipe.find()
     .then((recipes) => {
       //res.status(200).json(result);
@@ -87,6 +87,22 @@ app.get("/viewRecipe/:id", (req, res) => {
         error: error,
       });
     });
+});
+
+app.get("/deleteRecipe/:id", (req, res) => {
+  Recipe.deleteOne({ _id: req.params.id })
+    .then(() => {
+      res.redirect("/");
+    })
+    .catch((error) => {
+      res.status(400).json({
+        error: error,
+      });
+    });
+});
+
+app.get("/searchForNewRecipes", (req, res) => {
+  res.render("searchForNewRecipesPage");
 });
 
 app.post("/addNewRecipe", (req, res) => {
