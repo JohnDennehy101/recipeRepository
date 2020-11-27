@@ -95,7 +95,7 @@ function createRecipeCards(recipes) {
       "waves-light",
       "red"
     );
-    linkElem.src = `viewapirecipe/${recipeResponseArr[i].idMeal}`;
+    linkElem.href = `viewapirecipe/${recipeResponseArr[i].idMeal}`;
 
     let iconElem = document.createElement("i");
     iconElem.classList.add("material-icons");
