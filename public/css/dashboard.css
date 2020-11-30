@@ -1,0 +1,19 @@
+img {
+  height: 314px;
+}
+.center-align {
+  margin: 20px 20px;
+}
+
+.card-content {
+  height: 190px;
+}
+
+@media screen and (max-width: 500px) {
+  .row .col.s4 {
+    width: 100% !important;
+    display: block;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+}

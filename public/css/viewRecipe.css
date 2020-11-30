@@ -1,0 +1,39 @@
+a.waves-effect.green.btn-large {
+  display: block;
+  margin: 0px 0px !important;
+  width: 100%;
+}
+a.waves-effect.wave-light.btn-large {
+  width: 50%;
+  margin: 0px !important;
+}
+
+a.waves-effect.red.btn-large {
+  width: 49.5%;
+
+  margin: 0px !important;
+}
+
+.card-content.center-align {
+  margin: 55px auto !important;
+  padding: 0px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 50;
+}
+
+@media screen and (max-width: 500px) {
+  a.waves-effect.wave-light.btn-large {
+    display: block;
+    margin: 0px 0px !important;
+    width: 100%;
+  }
+
+  a.waves-effect.red.btn-large {
+    display: block;
+    margin: 0px 0px !important;
+    width: 100%;
+  }
+}

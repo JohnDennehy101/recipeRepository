@@ -306,12 +306,11 @@ app.get("/viewapirecipe/:id", (req, res) => {
       .save()
       .then(() => {
         console.log(recipe);
+        res.redirect("/");
       })
       .catch((error) => {
         console.log(error);
       });
-
-    res.redirect("/");
   });
 });
 
