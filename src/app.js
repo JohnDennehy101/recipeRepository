@@ -330,6 +330,56 @@ app.get("/searchForNewRecipes", (req, res) => {
   res.render("searchForNewRecipesPage");
 });
 
+app.get("/editRecipe/:id", (req, res) => {
+  let recipeId = req.params.id;
+
+  Recipe.findById(recipeId)
+    .then((recipe) => {
+      res.render("editRecipe", {
+        recipe,
+      });
+    })
+    .catch((error) => {
+      res.status(400).json({
+        error: error,
+      });
+    });
+});
+
+app.post("/updateRecipe/:id", (req, res) => {
+  let recipeId = req.params.id;
+  console.log(req.body.title);
+  console.log(req.body.description);
+  console.log(req.body.imagePath);
+  console.log(req.body.recipeLink);
+  Recipe.findByIdAndUpdate(
+    { _id: recipeId },
+    {
+      title: req.body.title,
+      description: req.body.description,
+      imagePath: req.body.imagePath,
+      link: req.body.recipeLink,
+      /*type: req.body.recipeType,
+        tags: req.body.recipeTags,
+        numberOfServings: req.body.numberOfServings,
+        seasoning: req.body.recipeSeasoning,
+        ingredients: req.body.recipeIngredients,
+        method: req.body.recipeMethod,*/
+    },
+    { new: true, useFindAndModify: false },
+    function (error, recipes) {
+      if (error) {
+        res.status(400).json({
+          error: error,
+        });
+      } else {
+      }
+    }
+  );
+
+  res.redirect("/");
+});
+
 app.post("/addNewRecipe", (req, res) => {
   let recipe = new Recipe({
     title: req.body.title,

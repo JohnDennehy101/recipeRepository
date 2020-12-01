@@ -21,7 +21,7 @@
     <div class="container">
         <div class="row">
             <div class="col s12 m12">
-                <div class="card large" style="height: 1800px; background-color: #FDFFFC">
+                <div class="card large" style="background-color: #FDFFFC">
                     <div class="card-image">
                         <img src="{{recipe.imagePath}}" style="height: 300px">
                     </div>
@@ -84,7 +84,8 @@
                     <div class="card-content center-align">
                         <a class="waves-effect green btn-large" style="margin: 0px 10px"
                             href="/saveRecipe/{{recipe.id}}">Save Recipe</a>
-                        <a class="waves-effect wave-light btn-large" style="margin: 0px 10px">Edit Recipe</a>
+                        <a class="waves-effect wave-light btn-large" style="margin: 0px 10px"
+                            href="/editRecipe/{{recipe.id}}">Edit Recipe</a>
                         <a class="waves-effect red btn-large" style="margin: 0px 10px"
                             href="/deleteRecipe/{{recipe.id}}">Delete Recipe</a>
 

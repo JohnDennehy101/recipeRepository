@@ -9,9 +9,13 @@ a.waves-effect.wave-light.btn-large {
 }
 
 a.waves-effect.red.btn-large {
-  width: 49.5%;
+  width: 49.59%;
 
   margin: 0px !important;
+}
+
+.card.large {
+  height: 2000px;
 }
 
 .card-content.center-align {
@@ -35,5 +39,15 @@ a.waves-effect.red.btn-large {
     display: block;
     margin: 0px 0px !important;
     width: 100%;
+  }
+  .card.large {
+    height: 2900px;
+  }
+  .col.s12.m12 {
+    margin-top: 20px;
+  }
+
+  .waves-effect {
+    margin-bottom: 5px;
   }
 }
