@@ -11,6 +11,17 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('select');
+            //console.log(elems);
+            let options = []
+
+            var instances = M.FormSelect.init(elems, options);
+        });
+
+    </script>
 </head>
 
 <body>
@@ -47,18 +58,121 @@
                             <label for="recipeUrl">Recipe URL</label>
                         </div>
 
-                        <div class="input-field col s12">
-                            <button class="btn waves-effect waves-light" type="submit">Submit
-                                <i class="material-icons right">send</i>
-                            </button>
+                        <div class="input-field col s6">
+                            <select id="recipeSelectField">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Dinner">Dinner</option>
+                                <option value="Appetiser">Appetiser</option>
+                                <option value="Snack">Snack</option>
+                            </select>
+                            <label>Type</label>
                         </div>
+
+                        <!--Hidden field for initial value of recipe type -->
+
+                        <input id="recipeType" type="url" class="validate" name="recipeType" value="{{recipe.type}}"
+                            style="display: none">
+                        <label for="recipeUrl" style="display: none">Recipe Type</label>
+
+
+                        <div class="input-field col s12">
+                            <p>Tags</p>
+                            <div class="chips chips-initial" name="recipeTags" id="tagContainer">
+
+                                <!--Hidden field for initial value of tags -->
+
+                                <input id="tags" type="text" class="validate" name="tags" value="{{recipe.tags}}"
+                                    style="display: none">
+                                <label for="recipeUrl" style="display: none">Recipe Tags</label>
+
+                            </div>
+
+                            <div class="input-field col s6">
+                                <select id="numOfServingsField">
+                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                                <label>Number of Servings</label>
+                            </div>
+
+                            <!--Hidden field for initial value of recipe number of servings -->
+
+                            <input id="servings" type="url" class="validate" name="servings"
+                                value="{{recipe.numberOfServings}}" style="display: none">
+                            <label for="recipeUrl" style="display: none">Recipe Servings</label>
+
+
+                            <div class="input-field col s6">
+                                <select multiple name="recipeSpices" id="seasoningSelect">
+                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="Basil">Basil</option>
+                                    <option value="Bay Leaves">Bay Leaves</option>
+                                    <option value="Black Pepper">Black Pepper</option>
+                                    <option value="Cardamom Pods">Cardamom Pods</option>
+                                    <option value="Cayenne Pepper">Cayenne Pepper</option>
+                                    <option value="Chilli Flakes">Chilli Flakes</option>
+                                    <option value="Cinnamon">Cinnamon</option>
+                                    <option value="Coriander"></option>Coriander</option>
+                                    <option value="Cumin">Cumin</option>
+                                    <option value="Curry Powder">Curry Powder</option>
+                                    <option value="Fennel">Fennel</option>
+                                    <option value="Garam Masala">Garam Masala</option>
+                                    <option value="Ginger">Ginger</option>
+                                    <option value="Marjoram">Marjoram</option>
+                                    <option value="Oregano">Oregano</option>
+                                    <option value="Paprika">Paprika</option>
+                                    <option value="Parsley">Parsley</option>
+                                    <option value="Rosemary">Rosemary</option>
+                                    <option value="Tarragon">Tarragon</option>
+                                    <option value="Thyme">Thyme</option>
+                                    <option value="Turmeric">Turmeric</option>
+
+                                </select>
+                                <label>Seasoning</label>
+                            </div>
+
+                            <!--Hidden field for initial value of recipe seasoning -->
+
+                            <input id="seasoning" type="url" class="validate" name="seasoning"
+                                value="{{recipe.seasoning}}" style="display: none">
+                            <label for="recipeUrl" style="display: none">Recipe Seasoning</label>
+
+                            <div class="input-field col s12">
+                                <textarea class="materialize-textarea" id="ingredientList" name="recipeIngredients"
+                                    placeholder="List the Recipe Ingredients here...">{{recipe.ingredients}}</textarea>
+
+                            </div>
+
+                            <div class="input-field col s12">
+                                <textarea class="materialize-textarea" id="MethodStepList" name="recipeMethod"
+                                    placeholder="List the Recipe Instructions here...">{{recipe.method}}</textarea>
+
+                            </div>
+
+
+                            <div class="input-field col s12">
+                                <button class="btn waves-effect waves-light" type="submit">Submit
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+
+                        </div>
+
 
                     </div>
 
-
                 </div>
-
-            </div>
 
 
 
@@ -73,6 +187,7 @@
     {{>footer}}
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="/js/materialize.js"></script>
+    <script type="text/javascript" src="/js/eventListenersEditRecipe.js"></script>
 </body>
 
 </html>
