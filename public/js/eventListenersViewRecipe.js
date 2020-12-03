@@ -25,9 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let methodArr = recipeMethodString.textContent.split("\r");
   console.log(methodArr);
   let methodStrWithReturnRemoved = methodArr.join("");
-  //const numberRegex = /[0-9]./g;
-  //let formattedMethodStr = methodStrWithReturnRemoved.replace(numberRegex, ",");
-  //let formattedMethodArr = formattedMethodStr.split(",");
+
   let formattedMethodStr = methodStrWithReturnRemoved.replace(regex, "|");
   let formattedMethodArr = formattedMethodStr.split("|");
 

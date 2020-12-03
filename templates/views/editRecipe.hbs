@@ -10,6 +10,8 @@
     <link rel="stylesheet" type="text/css" href="/css/materialize.css" media="screen,projection" />
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Custom Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="/css/editRecipe.css">
     <title>Document</title>
 
     <script>
@@ -19,6 +21,7 @@
             let options = []
 
             var instances = M.FormSelect.init(elems, options);
+
         });
 
     </script>
@@ -81,13 +84,14 @@
                             <p>Tags</p>
                             <div class="chips chips-initial" name="recipeTags" id="tagContainer">
 
-                                <!--Hidden field for initial value of tags -->
 
-                                <input id="tags" type="text" class="validate" name="tags" value="{{recipe.tags}}"
-                                    style="display: none">
-                                <label for="recipeUrl" style="display: none">Recipe Tags</label>
 
                             </div>
+                            <!--Hidden field for initial value of tags -->
+
+                            <input id="tags" type="text" class="validate" name="tags" value="{{recipe.tags}}"
+                                style="display: none">
+                            <label for="recipeUrl" style="display: none">Recipe Tags</label>
 
                             <div class="input-field col s6">
                                 <select id="numOfServingsField">
@@ -149,24 +153,28 @@
                             <label for="recipeUrl" style="display: none">Recipe Seasoning</label>
 
                             <div class="input-field col s12">
+                                <span class="card-title left-align" style="font-weight: 500">Ingredients</span>
                                 <textarea class="materialize-textarea" id="ingredientList" name="recipeIngredients"
                                     placeholder="List the Recipe Ingredients here...">{{recipe.ingredients}}</textarea>
 
                             </div>
 
                             <div class="input-field col s12">
+                                <span class="card-title left-align" style="font-weight: 500">Method</span>
                                 <textarea class="materialize-textarea" id="MethodStepList" name="recipeMethod"
                                     placeholder="List the Recipe Instructions here...">{{recipe.method}}</textarea>
 
                             </div>
 
 
-                            <div class="input-field col s12">
-                                <button class="btn waves-effect waves-light" type="submit">Submit
-                                    <i class="material-icons right">send</i>
-                                </button>
-                            </div>
 
+
+
+
+                        </div>
+
+                        <div class="card-action center-align" style="background-color: #4db6ac">
+                            <a href="{{recipe.link}}" target="_blank" style="color: #FFFFFF">Submit</a>
                         </div>
 
 
@@ -179,6 +187,8 @@
         </form>
 
 
+
+    </div>
 
     </div>
 

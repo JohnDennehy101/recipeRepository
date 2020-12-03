@@ -39,41 +39,15 @@ document.addEventListener("DOMContentLoaded", function () {
   M.FormSelect.init(seasoningTypeElem);
 
   /*Tag field Manipulation */
-
-  var tagTypeElem = document.querySelector(".chips-initial");
-
-  var elems = document.querySelectorAll(".chips-initial");
-
-  /* TO BE RESOLVED */
-  M.Chips.init(elems, {
-    data: [
-      {
-        tag: "Apple",
-      },
-      {
-        tag: "Microsoft",
-      },
-      {
-        tag: "Google",
-      },
-    ],
-  });
-
-  console.log(tagTypeElem);
-
+  var elems = document.querySelectorAll(".chips");
+  let tagsObjectArr = [];
   for (let i = 0; i < tagsArr.length; i++) {
-    if (tagsArr[i].length > 0) {
-      //let tagElem = document.createElement("div");
-      //tagElem.classList.add("chips");
-      tagElem.style.display = "inline-block";
-      tagElem.textContent = tagsArr[i];
-      let iconElem = document.createElement("i");
-      iconElem.classList.add("material-icons");
-      iconElem.classList.add("close");
-      iconElem.textContent = "close";
-      tagElem.appendChild(iconElem);
-
-      tagContainer.appendChild(tagElem);
+    if (tagsArr[i] !== "") {
+      tagsObjectArr.push({ tag: tagsArr[i] });
     }
   }
+
+  M.Chips.init(elems, {
+    data: tagsObjectArr,
+  });
 });
