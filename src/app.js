@@ -333,6 +333,8 @@ app.get("/searchForNewRecipes", (req, res) => {
 app.get("/editRecipe/:id", (req, res) => {
   let recipeId = req.params.id;
 
+  console.log(req.body);
+
   Recipe.findById(recipeId)
     .then((recipe) => {
       res.render("editRecipe", {
@@ -348,10 +350,7 @@ app.get("/editRecipe/:id", (req, res) => {
 
 app.post("/updateRecipe/:id", (req, res) => {
   let recipeId = req.params.id;
-  console.log(req.body.title);
-  console.log(req.body.description);
-  console.log(req.body.imagePath);
-  console.log(req.body.recipeLink);
+  console.log(req.body);
   Recipe.findByIdAndUpdate(
     { _id: recipeId },
     {

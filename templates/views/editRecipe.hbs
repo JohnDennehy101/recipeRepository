@@ -32,18 +32,18 @@
 
 
     <div class="container">
-        <form class="col s12" action="/updateRecipe/{{recipe.id}}" method="POST">
-            <div class="row">
-                <div class="col s12 m12">
 
-                    <div class="card large" style="background-color: #FDFFFC">
-                        <div class="card-image">
-                            <img src="{{recipe.imagePath}}" style="height: 300px">
-                        </div>
+        <div class="row">
+            <div class="col s12 m12">
 
-
+                <div class="card large" style="background-color: #FDFFFC">
+                    <div class="card-image">
+                        <img src="{{recipe.imagePath}}" style="height: 300px">
+                    </div>
 
 
+
+                    <form class="col s12" action="/updateRecipe/{{recipe.id}}" method="POST" novalidate>
                         <div class="input-field col s6">
                             <input id="recipeTitle" type="text" class="validate" name="title" value="{{recipe.title}}">
                             <label for="recipeTitle">Recipe Title</label>
@@ -89,7 +89,7 @@
                             </div>
                             <!--Hidden field for initial value of tags -->
 
-                            <input id="tags" type="text" class="validate" name="tags" value="{{recipe.tags}}"
+                            <input id="tags" type="text" class="validate" name="recipeTags" value="{{recipe.tags}}"
                                 style="display: none">
                             <label for="recipeUrl" style="display: none">Recipe Tags</label>
 
@@ -112,7 +112,7 @@
 
                             <!--Hidden field for initial value of recipe number of servings -->
 
-                            <input id="servings" type="url" class="validate" name="servings"
+                            <input id="servings" type="url" class="validate" name="numberOfServings"
                                 value="{{recipe.numberOfServings}}" style="display: none">
                             <label for="recipeUrl" style="display: none">Recipe Servings</label>
 
@@ -148,7 +148,7 @@
 
                             <!--Hidden field for initial value of recipe seasoning -->
 
-                            <input id="seasoning" type="url" class="validate" name="seasoning"
+                            <input id="seasoning" type="url" class="validate" name="recipeSeasoning"
                                 value="{{recipe.seasoning}}" style="display: none">
                             <label for="recipeUrl" style="display: none">Recipe Seasoning</label>
 
@@ -173,22 +173,23 @@
 
                         </div>
 
-                        <div class="card-action center-align" style="background-color: #4db6ac">
-                            <a href="{{recipe.link}}" target="_blank" style="color: #FFFFFF">Submit</a>
-                        </div>
+                        <!--<div class="card-action center-align" style="background-color: #FFFFFF">-->
+                        <!--<a href="{{recipe.link}}" target="_blank" style="color: #FFFFFF">Submit</a>-->
+                        <button class="btn waves-effect waves-light" type="submit">Submit</button>
+                        <!--</div>-->
 
-
-                    </div>
-
+                    </form>
                 </div>
 
+            </div>
 
 
-        </form>
 
 
 
-    </div>
+
+
+        </div>
 
     </div>
 
