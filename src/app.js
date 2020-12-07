@@ -358,6 +358,12 @@ app.post("/updateRecipe/:id", (req, res) => {
       description: req.body.description,
       imagePath: req.body.imagePath,
       link: req.body.recipeLink,
+      type: req.body.recipeType,
+      tags: req.body.recipeTags,
+      numberOfServings: req.body.numberOfServings,
+      seasoning: req.body.recipeSeasoning,
+      ingredients: req.body.recipeIngredients,
+      method: req.body.recipeMethod
       /*type: req.body.recipeType,
         tags: req.body.recipeTags,
         numberOfServings: req.body.numberOfServings,

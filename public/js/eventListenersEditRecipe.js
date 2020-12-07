@@ -59,6 +59,14 @@ document.addEventListener("DOMContentLoaded", function () {
   M.Chips.init(elems, {
     data: tagsObjectArr,
   });
+
+  
+    var elems = document.querySelectorAll('.sidenav');
+    let options = [];
+    var instances = M.Sidenav.init(elems, options);
+
+    
+      
 });
 
 recipeTypeSelectField.addEventListener("change", (e) => {

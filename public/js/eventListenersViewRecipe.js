@@ -96,4 +96,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   console.log(tagsArr);
   console.log(recipeTagString.textContent);
+
+  var elems = document.querySelectorAll('.sidenav');
+    let options = [];
+    var instances = M.Sidenav.init(elems, options);
 });

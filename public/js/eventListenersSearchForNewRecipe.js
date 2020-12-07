@@ -6,6 +6,8 @@ let count = 0;
 
 let recipeResults = document.getElementById("recipeResults");
 
+let input = document.querySelector('.input-field')
+
 recipeCategorySelectField.addEventListener("change", (e) => {
   async function fetchRecipesJson() {
     let testArr = [
@@ -129,3 +131,20 @@ function createRecipeCards(recipes) {
     }
   }
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+var elems = document.querySelectorAll('.sidenav');
+    let options = [];
+    var instances = M.Sidenav.init(elems, options);
+
+console.log(input)
+input.style.setProperty('margin-bottom', "420px", 'important');
+
+})
+
+input.addEventListener('change', (e) => {
+   input.style.setProperty('margin-bottom', "20px", 'important');
+} )
+
+

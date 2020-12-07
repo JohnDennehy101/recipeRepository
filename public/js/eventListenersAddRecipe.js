@@ -35,53 +35,21 @@ for (let i = 1; i < 16; i++) {
   imagePathCollection.push(`/imgs/img${i}.jpg`);
 }
 
-/*addIngredientButton.addEventListener("click", (e) => {
-  let rowDiv = e.path[3];
-  let newRowEl = document.createElement("div");
-  newRowEl.classList.add("row");
-  let inputFieldDivWrapper = document.createElement("div");
-  inputFieldDivWrapper.classList.add("input-field");
-  inputFieldDivWrapper.classList.add("col");
-  inputFieldDivWrapper.classList.add("s12");
-
-  let newIngredientInput = document.createElement("input");
-  let newIngredientLabel = document.createElement("label");
-  newIngredientLabel.setAttribute("for", `Ingredient${count}`);
-  newIngredientLabel.textContent = "Ingredient";
-  newIngredientInput.id = `Ingredient${count}`;
-  count++;
-  newIngredientInput.type = "text";
-  newIngredientInput.classList.add("validate");
-  inputFieldDivWrapper.appendChild(newIngredientInput);
-  inputFieldDivWrapper.appendChild(newIngredientLabel);
-  newRowEl.appendChild(inputFieldDivWrapper);
-
-   console.log(addIngredientInputField.value); */
-
-/*ingredientList.textContent +=
-    "\u2022 " + addIngredientInputField.value + "\n";
-  M.textareaAutoResize("ingredientList");
-  addIngredientInputField.value = "";*/
-
-//rowDiv.appendChild(newRowEl);
-//});
-
-/*addMethodStepBtn.addEventListener("click", () => {
-  methodStepList.textContent += count + ". " + addMethodStepField.value + "\n";
-  count++;
-  addMethodStepField.value = "";
-  addIngredientInputField.value = "";
-});*/
+let testingArray = [];
 
 tagContainer.addEventListener("keyup", (e) => {
   tagsStore.value = "";
   if (e.code === "Enter") {
+    testingArray = [];
     let chips = e.path[1].childNodes;
-    //console.log(chips);
+
     for (let i = 1; i < chips.length - 1; i++) {
       let formatText = chips[i].textContent.indexOf("close");
       let finalText = chips[i].textContent.substring(0, formatText);
       tagsStore.value += finalText + ",";
+      testingArray.push(finalText);
+      console.log(testingArray);
+
       finalText = "";
       formatText = 0;
     }
@@ -91,76 +59,42 @@ tagContainer.addEventListener("keyup", (e) => {
 
     if (chipEls !== undefined) {
       for (let i = 0; i < chipEls.length; i++) {
+        console.log(chipEls[i].children[0]);
         chipEls[i].children[0].addEventListener("click", (e) => {
+          elems = document.querySelectorAll(".chips");
+          console.log(elems[0].children[i].innerText);
+          let deletedTagUnformattedText = elems[0].children[i].innerText;
+          let deletedTagFormattedText = deletedTagUnformattedText.indexOf(
+            "close"
+          );
+          let finalTextElementToBeRemoved = deletedTagUnformattedText.substring(
+            0,
+            deletedTagFormattedText - 1
+          );
+          console.log(finalTextElementToBeRemoved.length);
+          console.log(tagsStore.value);
+          let beforeLength = testingArray.length;
+          //console.log(tagsStore.value.indexOf(finalTextElementToBeRemoved))
+          console.log(testingArray.indexOf(`${finalTextElementToBeRemoved}`));
+
+          let arrayIndex = testingArray.indexOf(
+            `${finalTextElementToBeRemoved}`
+          );
+          if (arrayIndex > -1) {
+            tagsStore.value = "";
+            testingArray.splice(arrayIndex, 1);
+            tagsStore.value += testingArray.join(",");
+            console.log(tagsStore.value);
+          }
+
+          console.log(testingArray);
+
           let unformattedDeletion = e.path[1].innerText;
           let formatDeletionText = unformattedDeletion.indexOf("close");
           let finalTagTextDeletion = unformattedDeletion.substring(
             0,
             formatDeletionText
           );
-          //console.log(tagsStore.value.indexOf(finalTagTextDeletion[0]));
-          let beforeDeletion = tagsStore.value.slice(
-            0,
-            tagsStore.value.indexOf(finalTagTextDeletion[0])
-          );
-
-          console.log(tagsStore.value.indexOf(finalTagTextDeletion));
-          //let replace = `${finalTagTextDeletion}`;
-          //let replace = ",";
-          //let re = new RegExp(replace, "g");
-          //let test1000 = `${tagsStore.value}`.replace(re, "");
-          //console.log("Test 1000: " + test1000);
-          //replaceDeletedTag = tagsStore.value.replace(
-          //  `${finalTagTextDeletion}`,
-          //  "testings"
-          // );
-          console.log("before deletion: " + beforeDeletion);
-          /*console.log("testing replace: " + replaceDeletedTag);
-          
-          console.log(finalTagTextDeletion + "To be deleted");
-          console.log("first char: " + finalTagTextDeletion.charAt(0)); */
-          /*let afterDeletion = tagsStore.value.substring(
-            tagsStore.value.indexOf(
-              finalTagTextDeletion.charAt(finalTagTextDeletion.length - 1)
-            )
-          );*/
-          console.log(
-            "Index position " +
-              (tagsStore.value.indexOf(
-                beforeDeletion.charAt(beforeDeletion.length - 1)
-              ) +
-                finalTagTextDeletion.length +
-                1)
-          );
-          console.log(
-            "First char to go from: " +
-              tagsStore.value.indexOf(
-                beforeDeletion.charAt(beforeDeletion.length - 1)
-              )
-          );
-          let afterDeletion = tagsStore.value.slice(
-            tagsStore.value.indexOf(
-              beforeDeletion.charAt(beforeDeletion.length - 1)
-            ) + finalTagTextDeletion.length
-          );
-
-          console.log("After deletion " + afterDeletion);
-          tagsStore.value = "";
-          let test = false;
-          while (!test) {
-            tagsStore.value = beforeDeletion + afterDeletion;
-            beforeDeletion = "";
-            afterDeletion = "";
-            unformattedDeletion = "";
-            console.log("Value after change: " + tagsStore.value);
-            test = true;
-            break;
-          }
-
-          console.log(finalTagTextDeletion);
-          console.log(tagsStore.value);
-          console.log(beforeDeletion);
-          console.log(afterDeletion);
         });
       }
     }
@@ -200,4 +134,8 @@ function obtainRandomImagePath() {
 // this way it works
 document.addEventListener("DOMContentLoaded", function () {
   imageUrl.value = obtainRandomImagePath();
+
+  var elems = document.querySelectorAll(".sidenav");
+  let options = [];
+  var instances = M.Sidenav.init(elems, options);
 });

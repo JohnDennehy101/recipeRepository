@@ -28,6 +28,11 @@ a.waves-effect.red.btn-large {
   top: 50;
 }
 
+
+div.col.s12.m12 {
+  margin-top: 20px;
+}
+
 @media screen and (max-width: 500px) {
   a.waves-effect.wave-light.btn-large {
     display: block;
