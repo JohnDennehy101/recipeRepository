@@ -22,11 +22,17 @@
     <!--Container for main content -->
     <div class="container">
         <div class="center-align">
-            <a href="/addRecipe">
-                <button class="btn waves-effect waves-light">Add Recipe
-                    <i class="material-icons right">create</i>
-                </button>
-            </a>
+            <form class="col s12" action="/addNewRecipe" method="POST">
+                <div class="row">
+                    <div class="input-field col s10" id="searchField">
+                        <input id="recipeSearch" type="text" class="validate" name="title">
+                        <label for="recipeSearch">Search for Recipes...</label>
+                    </div>
+                    <button class="btn waves-effect waves-light" type="submit">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
         </div>
         <!--Recipe Components -->
         <div class="row">
@@ -59,9 +65,13 @@
 
         <!--End of Recipe Components -->
 
+
+
     </div>
 
     {{>footer}}
+
+
 
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="/js/materialize.js"></script>

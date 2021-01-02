@@ -330,6 +330,10 @@ app.get("/searchForNewRecipes", (req, res) => {
   res.render("searchForNewRecipesPage");
 });
 
+app.get("/additionalFoodResources", (req, res) => {
+  res.render("additionalFoodResources");
+});
+
 app.get("/editRecipe/:id", (req, res) => {
   let recipeId = req.params.id;
 
