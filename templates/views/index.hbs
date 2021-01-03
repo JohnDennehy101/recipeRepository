@@ -22,10 +22,10 @@
     <!--Container for main content -->
     <div class="container">
         <div class="center-align">
-            <form class="col s12" action="/addNewRecipe" method="POST">
+            <form class="col s12" action="/searchRecipes" method="GET">
                 <div class="row">
                     <div class="input-field col s10" id="searchField">
-                        <input id="recipeSearch" type="text" class="validate" name="title">
+                        <input id="recipeSearch" type="text" class="validate" name="search">
                         <label for="recipeSearch">Search for Recipes...</label>
                     </div>
                     <button class="btn waves-effect waves-light" type="submit">Submit
@@ -33,6 +33,12 @@
                     </button>
                 </div>
             </form>
+            {{#if noSearchResults}}
+            <div class="container">
+                <p>No recipes found with that title. All saved recipes are listed below by default.</p>
+            </div>
+            {{/if}}
+
         </div>
         <!--Recipe Components -->
         <div class="row">

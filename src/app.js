@@ -38,6 +38,7 @@ const Recipe = mongoose.model("Recipe", {
   title: {
     type: String,
     trim: true,
+    text: true
   },
   description: {
     type: String,
@@ -55,7 +56,14 @@ const Recipe = mongoose.model("Recipe", {
   seasoning: { type: String },
   ingredients: { type: String },
   method: { type: String },
-});
+},
+);
+
+Recipe.createIndexes({
+  title: "text"
+})
+
+
 
 app.get("/", (req, res) => {
   Recipe.find()
@@ -333,6 +341,37 @@ app.get("/searchForNewRecipes", (req, res) => {
 app.get("/additionalFoodResources", (req, res) => {
   res.render("additionalFoodResources");
 });
+
+app.get("/searchRecipes", (req, res) => {
+let titleSearch = req.query.search
+Recipe.find({
+  $text: {
+    $search: titleSearch
+  }
+}).then((recipes) => {
+  if (recipes.length > 0) {
+    res.render("index", {
+        recipes,
+      });
+  }
+  else {
+    let noSearchResults = true;
+    Recipe.find()
+    .then((recipes) => {
+      //res.status(200).json(result);
+      res.render("index", {
+        recipes,
+        noSearchResults
+      });
+    })
+  }
+  
+}).catch((error) => {
+      res.status(400).json({
+        error: error,
+      });
+    });
+})
 
 app.get("/editRecipe/:id", (req, res) => {
   let recipeId = req.params.id;
