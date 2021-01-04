@@ -29,8 +29,11 @@ document.addEventListener("DOMContentLoaded", function () {
   let formattedMethodStr = methodStrWithReturnRemoved.replace(regex, "|");
   let formattedMethodArr = formattedMethodStr.split("|");
 
-  for (let g = 1; g < formattedMethodArr.length; g++) {
-    let liMethodElem = document.createElement("li");
+  for (let g = 0; g < formattedMethodArr.length; g++) {
+    console.log(formattedMethodArr[0])
+    console.log(formattedMethodArr[g])
+    if (formattedMethodArr[g] !== "") {
+      let liMethodElem = document.createElement("li");
     liMethodElem.textContent = formattedMethodArr[g];
 
     liMethodElem.style.listStylePosition = "outside";
@@ -38,14 +41,19 @@ document.addEventListener("DOMContentLoaded", function () {
     liMethodElem.style.paddingLeft = "7px";
     methodField.style.paddingLeft = "18px";
     methodField.appendChild(liMethodElem);
+    }
+    
   }
 
   for (let h = 0; h < formattedArr.length; h++) {
-    let liElem = document.createElement("li");
-    liElem.textContent = formattedArr[h];
-    liElem.style.listStyleType = "circle";
-    liElem.style.listStylePosition = "inside";
-    ingredientsField.appendChild(liElem);
+    if (formattedArr[h] !== "") {
+      let liElem = document.createElement("li");
+      liElem.textContent = formattedArr[h];
+      liElem.style.listStyleType = "circle";
+      liElem.style.listStylePosition = "inside";
+      ingredientsField.appendChild(liElem);
+    }
+   
   }
 
   for (let i = 0; i < tagsArr.length; i++) {

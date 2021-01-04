@@ -118,105 +118,41 @@ app.get("/viewapirecipe/:id", (req, res) => {
   console.log(recipeDataPromise)
 
   let recipeData = recipeDataPromise.then((data) => {
-    return data;
-  });
+      let recipeSeasoning = utils.obtainRecipeSeasoning(data);
 
-  console.log(recipeData)
-
-  /*let testResponse = {
-    meals: [
-      {
-        idMeal: "52940",
-        strMeal: "Brown Stew Chicken",
-        strDrinkAlternate: null,
-        strCategory: "Chicken",
-        strArea: "Jamaican",
-        strInstructions:
-          "Squeeze lime over chicken and rub well. Drain off excess lime juice.\r\n" +
-          "Combine tomato, scallion, onion, garlic, pepper, thyme, pimento and soy sauce in a large bowl with the chicken pieces. Cover and marinate at least one hour.\r\n" +
-          "Heat oil in a dutch pot or large saucepan. Shake off the seasonings as you remove each piece of chicken from the marinade. Reserve the marinade for sauce.\r\n" +
-          "Lightly brown the chicken a few pieces at a time in very hot oil. Place browned chicken pieces on a plate to rest while you brown the remaining pieces.\r\n" +
-          "Drain off excess oil and return the chicken to the pan. Pour the marinade over the chicken and add the carrots. Stir and cook over medium heat for 10 minutes.\r\n" +
-          "Mix flour and coconut milk and add to stew, stirring constantly. Turn heat down to minimum and cook another 20 minutes or until tender.",
-        strMealThumb:
-          "https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg",
-        strTags: "Stew",
-        strYoutube: "https://www.youtube.com/watch?v=_gFB1fkNhXs",
-        strIngredient1: "Chicken",
-        strIngredient2: "Tomato",
-        strIngredient3: "Onions",
-        strIngredient4: "Garlic Clove",
-        strIngredient5: "Red Pepper",
-        strIngredient6: "Carrots",
-        strIngredient7: "Lime",
-        strIngredient8: "Thyme",
-        strIngredient9: "Allspice",
-        strIngredient10: "Soy Sauce",
-        strIngredient11: "Cornstarch",
-        strIngredient12: "Coconut Milk",
-        strIngredient13: "Vegetable Oil",
-        strIngredient14: "",
-        strIngredient15: "",
-        strIngredient16: "",
-        strIngredient17: "",
-        strIngredient18: "",
-        strIngredient19: "",
-        strIngredient20: "",
-        strMeasure1: "1 whole",
-        strMeasure2: "1 chopped",
-        strMeasure3: "2 chopped",
-        strMeasure4: "2 chopped",
-        strMeasure5: "1 chopped",
-        strMeasure6: "1 chopped",
-        strMeasure7: "1",
-        strMeasure8: "2 tsp",
-        strMeasure9: "1 tsp ",
-        strMeasure10: "2 tbs",
-        strMeasure11: "2 tsp",
-        strMeasure12: "2 cups ",
-        strMeasure13: "1 tbs",
-        strMeasure14: "",
-        strMeasure15: "",
-        strMeasure16: "",
-        strMeasure17: "",
-        strMeasure18: "",
-        strMeasure19: "",
-        strMeasure20: "",
-        strSource:
-          "http://www.geniuskitchen.com/recipe/authentic-jamaican-brown-stew-chicken-347996",
-        dateModified: null,
-      },
-    ],
-  };*/
-
-  let recipeSeasoning = utils.obtainRecipeSeasoning(recipeData);
-
-  let recipeIngredients = utils.obtainIngredientsString(recipeData);
+  let recipeIngredients = utils.obtainIngredientsString(data);
 
   let recipe = {
-    id: recipeData.meals[0].idMeal,
-    imagePath: recipeData.meals[0].strMealThumb,
-    title: recipeData.meals[0].strMeal,
+    id: data.meals[0].idMeal,
+    imagePath: data.meals[0].strMealThumb,
+    title: data.meals[0].strMeal,
     type: "",
     description: "",
     numberOfServings: 3,
-    tags: recipeData.meals[0].strArea,
+    tags: data.meals[0].strArea,
     seasoning: recipeSeasoning,
     ingredients: recipeIngredients,
-    method: recipeData.meals[0].strInstructions,
-    link: recipeData.meals[0].strSource,
+    method: data.meals[0].strInstructions,
+    link: data.meals[0].strSource,
   };
 
   res.render("viewRecipe", {
     recipe,
+  })
   });
+
+  console.log(recipeData)
+
+  
+
+
 
   app.get("/saveRecipe/:id", (req, res) => {
     let recipeId = req.params.id;
 
     let apiUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`;
 
-    /*function axiosObtainRecipeApiData() {
+    function axiosObtainRecipeApiData() {
     const promise = axios.get(apiUrl);
     const dataPromise = promise.then((response) => {
       return response.data;
@@ -224,13 +160,39 @@ app.get("/viewapirecipe/:id", (req, res) => {
     return dataPromise;
   }
 
-  let test = axiosObtainRecipeApiData();
+  let firstApiCallData = axiosObtainRecipeApiData();
 
-  let finalTest = test.then((data) => {
-    console.log(data);
-  }); */
+  let finalApiManipulation = firstApiCallData.then((data) => {
+      let recipeSeasoning = utils.obtainRecipeSeasoning(data);
 
-    let testResponse = {
+    let recipeIngredients = utils.obtainIngredientsString(data);
+
+    let recipe = new Recipe({
+      id: data.meals[0].idMeal,
+      title: data.meals[0].strMeal,
+      description: "",
+      imagePath: data.meals[0].strMealThumb,
+      link: data.meals[0].strSource,
+      type: "",
+      tags: data.meals[0].strArea,
+      numberOfServings: 3,
+      seasoning: recipeSeasoning,
+      ingredients: recipeIngredients,
+      method: data.meals[0].strInstructions,
+    });
+
+    recipe
+      .save()
+      .then(() => {
+        console.log(recipe);
+        res.redirect("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }); 
+
+    /*let testResponse = {
       meals: [
         {
           idMeal: "52940",
@@ -294,9 +256,9 @@ app.get("/viewapirecipe/:id", (req, res) => {
           dateModified: null,
         },
       ],
-    };
+    };*/
 
-    let recipeSeasoning = utils.obtainRecipeSeasoning(testResponse);
+/*let recipeSeasoning = utils.obtainRecipeSeasoning(testResponse);
 
     let recipeIngredients = utils.obtainIngredientsString(testResponse);
 
@@ -322,7 +284,7 @@ app.get("/viewapirecipe/:id", (req, res) => {
       })
       .catch((error) => {
         console.log(error);
-      });
+      }); */
   });
 });
 
@@ -379,8 +341,6 @@ Recipe.find({
 
 app.get("/editRecipe/:id", (req, res) => {
   let recipeId = req.params.id;
-
-  console.log(req.body);
 
   Recipe.findById(recipeId)
     .then((recipe) => {
