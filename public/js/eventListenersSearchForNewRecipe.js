@@ -2,7 +2,8 @@ let recipeCategorySelectField = document.getElementById(
   "recipeCategorySelectField"
 );
 
-let count = 0;
+
+let apiResponseRecipes = [];
 
 let recipeResults = document.getElementById("recipeResults");
 
@@ -10,70 +11,107 @@ let input = document.querySelector('.input-field')
 
 recipeCategorySelectField.addEventListener("change", (e) => {
   async function fetchRecipesJson() {
-    let testArr = [
-      {
-        strMeal: "Brown Stew Chicken",
-        strMealThumb:
-          "https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg",
-        idMeal: "52940",
-      },
-      {
-        strMeal: "Chick-Fil-A Sandwich",
-        strMealThumb:
-          "https://www.themealdb.com/images/media/meals/sbx7n71587673021.jpg",
-        idMeal: "53016",
-      },
-      {
-        strMeal: "Chicken & mushroom Hotpot",
-        strMealThumb:
-          "https://www.themealdb.com/images/media/meals/uuuspp1511297945.jpg",
-        idMeal: "52846",
-      },
-      {
-        strMeal: "Chicken Alfredo Primavera",
-        strMealThumb:
-          "https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg",
-        idMeal: "52796",
-      },
-      {
-        strMeal: "Chicken Basquaise",
-        strMealThumb:
-          "https://www.themealdb.com/images/media/meals/wruvqv1511880994.jpg",
-        idMeal: "52934",
-      },
-      {
-        strMeal: "Chicken Congee",
-        strMealThumb:
-          "https://www.themealdb.com/images/media/meals/1529446352.jpg",
-        idMeal: "52956",
-      },
-      {
-        strMeal: "Chicken Couscous",
-        strMealThumb:
-          "https://www.themealdb.com/images/media/meals/qxytrx1511304021.jpg",
-        idMeal: "52850",
-      },
-    ];
-    /*let initialRecipeResponse = await fetch(
+   
+    let initialRecipeResponse = await fetch(
       `https://www.themealdb.com/api/json/v1/1/filter.php?c=${e.target.value}`
     );
 
     let jsonRecipeResponse = await initialRecipeResponse.json(); 
-
-    return jsonRecipeResponse;*/
-    return testArr;
+    return jsonRecipeResponse;
   }
 
   fetchRecipesJson().then((recipes) => {
-    createRecipeCards(recipes);
-    console.log(recipes);
+     console.log(recipes);
+     apiResponseRecipes = []
+     apiResponseRecipes = recipes.meals
+     console.log(apiResponseRecipes)
+     processArray(apiResponseRecipes)
+    
+    
+   
   });
 });
+
+async function createRecipeContainerElem(item) {
+
+    let parentDivElem = document.createElement("div");
+    parentDivElem.classList.add("col");
+    parentDivElem.classList.add("s4");
+    parentDivElem.classList.add("m4");
+    parentDivElem.classList.add("recipeElement")
+
+    let cardDivElem = document.createElement("div");
+    cardDivElem.classList.add("card");
+
+    let cardImageDivElem = document.createElement("div");
+    cardImageDivElem.classList.add("card-image");
+
+    let imageElem = document.createElement("img");
+    imageElem.src = item.strMealThumb;
+   
+
+    let linkElem = document.createElement("a");
+    linkElem.classList.add(
+      "btn-floating",
+      "halfway-fab",
+      "waves-effect",
+      "waves-light",
+      "red"
+    );
+    linkElem.href = `viewapirecipe/${item.idMeal}`;
+
+    let iconElem = document.createElement("i");
+    iconElem.classList.add("material-icons");
+    iconElem.textContent = "add";
+
+    linkElem.appendChild(iconElem);
+    cardImageDivElem.appendChild(imageElem);
+    cardImageDivElem.appendChild(linkElem);
+
+    let cardContentElem = document.createElement("div");
+    cardContentElem.classList.add("card-content");
+
+    let cardTitleElem = document.createElement("span");
+    cardTitleElem.classList.add("card-title");
+    cardTitleElem.textContent = item.strMeal;
+
+    cardContentElem.appendChild(cardTitleElem);
+
+    cardDivElem.appendChild(cardImageDivElem);
+    cardDivElem.appendChild(cardContentElem);
+
+    parentDivElem.appendChild(cardDivElem);
+
+    
+    recipeResults.appendChild(parentDivElem)
+  
+}
+
+async function processArray(array) {
+  while (recipeResults.firstChild) {
+    recipeResults.removeChild(recipeResults.firstChild)
+  }
+  for (const item of array) {
+    await createRecipeContainerElem(item);
+  }
+  console.log('Done!');
+}
+
+
+
+
+
+
+
+
+
+
 
 function createRecipeCards(recipes) {
   let newRowElem = document.createElement("div");
   newRowElem.classList.add("row");
-  let recipeResponseArr = [...recipes];
+  let recipeResponseArr = [recipes.meals];
+  console.log(recipeResponseArr)
   for (let i = 0; i < recipeResponseArr.length; i++) {
     let parentDivElem = document.createElement("div");
     parentDivElem.classList.add("col");
@@ -87,7 +125,13 @@ function createRecipeCards(recipes) {
     cardImageDivElem.classList.add("card-image");
 
     let imageElem = document.createElement("img");
-    imageElem.src = recipeResponseArr[i].strMealThumb;
+    //console.log(recipeResponseArr[i])
+    console.log(recipeResponseArr[i].strMeal)
+    console.log(recipeResponseArr[i].idMeal)
+    console.log(recipeResponseArr[i].strMealThumb)
+    //console.log(recipeResponseArr[i]["strMealThumb"])
+    //imageElem.src = recipeResponseArr[i].strMealThumb;
+    imageElem.src = '#'
 
     let linkElem = document.createElement("a");
     linkElem.classList.add(
@@ -130,7 +174,7 @@ function createRecipeCards(recipes) {
       count = 0;
     }
   }
-}
+} 
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -139,7 +183,7 @@ var elems = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(elems, options);
 
 console.log(input)
-input.style.setProperty('margin-bottom', "420px", 'important');
+input.style.setProperty('margin-bottom', "630px", 'important');
 
 })
 

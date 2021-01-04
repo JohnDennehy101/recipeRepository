@@ -105,7 +105,7 @@ app.get("/viewapirecipe/:id", (req, res) => {
 
   let apiUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`;
 
-  /*function axiosObtainRecipeApiData() {
+  function axiosObtainRecipeApiData() {
     const promise = axios.get(apiUrl);
     const dataPromise = promise.then((response) => {
       return response.data;
@@ -113,13 +113,17 @@ app.get("/viewapirecipe/:id", (req, res) => {
     return dataPromise;
   }
 
-  let test = axiosObtainRecipeApiData();
+  let recipeDataPromise = axiosObtainRecipeApiData();
 
-  let finalTest = test.then((data) => {
-    console.log(data);
-  }); */
+  console.log(recipeDataPromise)
 
-  let testResponse = {
+  let recipeData = recipeDataPromise.then((data) => {
+    return data;
+  });
+
+  console.log(recipeData)
+
+  /*let testResponse = {
     meals: [
       {
         idMeal: "52940",
@@ -183,24 +187,24 @@ app.get("/viewapirecipe/:id", (req, res) => {
         dateModified: null,
       },
     ],
-  };
+  };*/
 
-  let recipeSeasoning = utils.obtainRecipeSeasoning(testResponse);
+  let recipeSeasoning = utils.obtainRecipeSeasoning(recipeData);
 
-  let recipeIngredients = utils.obtainIngredientsString(testResponse);
+  let recipeIngredients = utils.obtainIngredientsString(recipeData);
 
   let recipe = {
-    id: testResponse.meals[0].idMeal,
-    imagePath: testResponse.meals[0].strMealThumb,
-    title: testResponse.meals[0].strMeal,
+    id: recipeData.meals[0].idMeal,
+    imagePath: recipeData.meals[0].strMealThumb,
+    title: recipeData.meals[0].strMeal,
     type: "",
     description: "",
     numberOfServings: 3,
-    tags: testResponse.meals[0].strArea,
+    tags: recipeData.meals[0].strArea,
     seasoning: recipeSeasoning,
     ingredients: recipeIngredients,
-    method: testResponse.meals[0].strInstructions,
-    link: testResponse.meals[0].strSource,
+    method: recipeData.meals[0].strInstructions,
+    link: recipeData.meals[0].strSource,
   };
 
   res.render("viewRecipe", {
