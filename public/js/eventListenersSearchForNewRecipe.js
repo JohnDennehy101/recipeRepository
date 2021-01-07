@@ -9,6 +9,13 @@ let recipeResults = document.getElementById("recipeResults");
 
 let input = document.querySelector('.input-field')
 
+
+ document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('select');
+            let options = []
+            var instances = M.FormSelect.init(elems, options);
+        });
+
 recipeCategorySelectField.addEventListener("change", (e) => {
   async function fetchRecipesJson() {
    

@@ -37,6 +37,29 @@ for (let i = 1; i < 16; i++) {
 
 let testingArray = [];
 
+
+ document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('select');
+            let options = []
+            var instances = M.FormSelect.init(elems, options);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.chips');
+            let options = []
+            var instances = M.Chips.init(elems, options);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.chips');
+            options = {
+                tag: 'chip content'
+            }
+            var instances = M.Chips.init(elems, options);
+        });
+
+
+
 tagContainer.addEventListener("keyup", (e) => {
   tagsStore.value = "";
   if (e.code === "Enter") {

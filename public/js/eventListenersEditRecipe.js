@@ -19,6 +19,15 @@ let tagContainer = document.getElementById("tagContainer");
 
 let testingArray = [];
 
+document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('select');
+            //console.log(elems);
+            let options = []
+
+            var instances = M.FormSelect.init(elems, options);
+
+        });
+
 document.addEventListener("DOMContentLoaded", function () {
   /*Recipe Type Select field Manipulation */
   var recipeTypeElem = document.querySelector("#recipeSelectField");
