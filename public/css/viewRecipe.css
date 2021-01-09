@@ -15,7 +15,7 @@ a.waves-effect.red.btn-large {
 }
 
 .card.large {
-  height: 2000px;
+  height: 2400px;
 }
 
 .card-content.center-align {
@@ -27,7 +27,6 @@ a.waves-effect.red.btn-large {
   right: 0;
   top: 50;
 }
-
 
 div.col.s12.m12 {
   margin-top: 20px;
@@ -46,7 +45,7 @@ div.col.s12.m12 {
     width: 100%;
   }
   .card.large {
-    height: 2900px;
+    height: 3300px;
   }
   .col.s12.m12 {
     margin-top: 20px;
