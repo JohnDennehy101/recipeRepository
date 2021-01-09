@@ -1,3 +1,4 @@
+console.log("Database URL", process.env.MONGODB_URI)
 const path = require("path");
 const express = require("express");
 const hbs = require("hbs");
